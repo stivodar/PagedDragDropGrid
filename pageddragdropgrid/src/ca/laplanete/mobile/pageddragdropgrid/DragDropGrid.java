@@ -232,7 +232,6 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 			@Override
 			public void setEditMode(boolean isInEditMode) {
 			}
-			
 	    };       
     }
 
@@ -252,12 +251,13 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 	private int[] pageHeights;
 	private int maxPageHeight;
 	
+
 	public void setPageHeight() {
 		LayoutParams params = getLayoutParams();
 		params.height = pageHeights[currentPage()];
 		setLayoutParams(params);
 	}
-	
+
 	private void getPagesHeight() {
 		int pageCount = adapter.pageCount();
 		pageHeights = new int[pageCount];
@@ -431,7 +431,9 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 
 	public void stopEditMode() {
 		isEditMode = false;
+
 //		cancelAnimations();
+
         invalidateViews();
 		manageChildrenReordering();
 		hideDeleteView();
@@ -1040,7 +1042,8 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 	}
 
 	private void addReorderedChildrenToParent(List<View> children) {
-		List<View> reorderedViews = children; 		
+		List<View> reorderedViews = children; 
+
 		newPositions.clear();
 		views.clear(); 
 		for (View view : reorderedViews) {
@@ -1128,7 +1131,7 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 		widthSize = acknowledgeWidthSize(widthMode, widthSize, display);
 		getPagesHeight();
 		heightSize = acknowledgeHeightSize(heightMode, heightSize, display);
-
+		
 		adaptChildrenMeasuresToViewSize(widthSize, heightSize);
 		searchBiggestChildMeasures();
 		computeGridMatrixSize(widthSize, heightSize);
@@ -1217,15 +1220,9 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 			if (height > heightSize) {
 				heightSize = height;
 				setPageHeight();
-//			} else {
-//				heightSize = 1000;
 			}
-//		} else {
-//			heightSize = 1000;
 		}
-		
-		gridPageHeight = heightSize;
-	
+
 		return heightSize;
 	}
 
@@ -1501,25 +1498,9 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 	
 	float savedGridSize = 0;
 	float savedSpacerSize = 0;
-	
-	public void changeChildrenSize(float scaleFactor) {		
-		spacer = spacer * scaleFactor;
 		
-//		for (int page = 0; page < adapter.pageCount(); page++) {
-//			if (page == currentPage()) {
-//				for (int item = 0; item < adapter.itemCountInPage(page); item++) {
-//					int index = indexOfItem(page, item);
-//					View view = views.get(index);
-//					LayoutParams params = getLayoutParams();
-//					params.width = (int) ((float) biggestChildWidth * scaleFactor);
-//					params.height = (int) ((float) biggestChildWidth * scaleFactor);
-//					view.setLayoutParams(params);
-//		
-//					adapter.invalidateView(view);
-//				}
-//			}
-//		}
-
+	public void changeChildrenSize(float scaleFactor) {
+		spacer = spacer * scaleFactor;
 //		if ((biggestChildWidth * scaleFactor) < (savedSize * 2.0f) && 
 //				(biggestChildWidth * scaleFactor) > (savedSize * 0.5f)) {
 			for (int i = 0; i < views.size(); i++) {
@@ -1531,12 +1512,10 @@ public class DragDropGrid extends ViewGroup implements OnTouchListener, OnLongCl
 	
 				adapter.invalidateView(view);
 			}
-			
+
 			getPagesHeight();
 			setPageHeight();
 //			requestLayout();
-//		}
-//		invalidate();
 	}
 	
 	public int getBiggestChildWidth() {

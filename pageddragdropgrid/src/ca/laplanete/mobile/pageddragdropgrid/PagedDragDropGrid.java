@@ -52,7 +52,6 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
     private PagedDragDropGridAdapter adapter;
     private OnClickListener listener;
     private GestureDetector gestureScanner;
-
     private OnPageChangedListener pageChangedListener;
     private int xmlRes;
 
@@ -135,6 +134,7 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
         return super.dispatchTouchEvent(event);
     }
     
+
     public void initPagedScroll() {
 
     	self = this;
@@ -154,7 +154,7 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
             	try {
             		boolean scaleEventUsed = mScaleDetector.onTouchEvent(event);
 	                boolean specialEventUsed = gestureScanner.onTouchEvent(event);
-	                
+
 	                if (event.getPointerCount() == 1) {
 		                if (!specialEventUsed && (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL)) {
 		                	int scrollX = getScrollX();
@@ -162,12 +162,12 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
 		                    int page = ((scrollX + (onePageWidth / 2)) / onePageWidth);
 		                    scrollToPage(page);
 		                    return true;
-		                    
+
 		                }  else {
 		                	return specialEventUsed;
 		                }
 	                } else {
-	                	return false;
+	                	return specialEventUsed;
 	                }
                 } catch (IllegalArgumentException ex) {
                     ex.printStackTrace();
@@ -176,7 +176,7 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
             }
         });
     }
-    
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         try {
@@ -234,7 +234,7 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
 			}
 		}, 100);
                
-        if (pageChangedListener != null) 
+        if (pageChangedListener != null)
             pageChangedListener.onPageChanged(this, page);
     }
 
@@ -356,7 +356,7 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
 	protected void dispatchDraw(Canvas canvas) {
   	
 		canvas.save(Canvas.MATRIX_SAVE_FLAG);
-//		int biggestChildWidth = getBiggestChildWidth();
+
 //		Log.e("realScaleFactor", String.valueOf(realScaleFactor));
 		
 //		if (realScaleFactor <= 2.0f && realScaleFactor >= 0.5f) {
@@ -391,7 +391,8 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
 		@Override
 		public boolean onScale(ScaleGestureDetector detector) {
 		    mScaleFactor *= detector.getScaleFactor();
-		    mScaleFactor = Math.max(0.5f, Math.min(mScaleFactor, 2.0f));    
+		    mScaleFactor = Math.max(0.5f, Math.min(mScaleFactor, 2.0f));
+
 		    invalidate();
 		    return true;		    
 		}
@@ -403,5 +404,5 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
 	    	invalidate();
 	    }		
 	}
-      
+  
 }

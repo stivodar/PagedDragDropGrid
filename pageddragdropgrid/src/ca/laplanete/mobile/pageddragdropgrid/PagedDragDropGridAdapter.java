@@ -151,7 +151,10 @@ public interface PagedDragDropGridAdapter {
      public boolean disableZoomAnimationsOnChangePage();
 
      public void invalidateView(View v);
+<<<<<<< HEAD
      
      public void setEditMode(boolean isInEditMode);
+=======
+>>>>>>> 5bdd392fd6c4825e0553350e5acd0e795e8e4d2a
 
 }
