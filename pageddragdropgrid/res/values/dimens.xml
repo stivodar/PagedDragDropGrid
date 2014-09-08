@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="grid">92dp</dimen>
+    <dimen name="p_spacer">8dp</dimen>
+
+</resources>
