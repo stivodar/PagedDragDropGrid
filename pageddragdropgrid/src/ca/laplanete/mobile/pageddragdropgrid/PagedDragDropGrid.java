@@ -52,7 +52,6 @@ public class PagedDragDropGrid extends HorizontalScrollView implements PagedCont
     private PagedDragDropGridAdapter adapter;
     private OnClickListener listener;
     private GestureDetector gestureScanner;
-    private CustomScrollView parent;
 
     private OnPageChangedListener pageChangedListener;
     private int xmlRes;
